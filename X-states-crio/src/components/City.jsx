@@ -9,7 +9,10 @@ function City({ country, state, city, setCity }) {
       return;
     }
 
-    fetch(`https://location-selector.labs.crio.do/country=${country}/state=${state}/cities`,{ cache: "no-store" })
+fetch(
+  `https://location-selector.labs.crio.do/country=${country}/state=${state}/cities`,
+  { cache: "no-store" }
+)
       .then(res => res.json())
       .then(data => setCities(data))
       .catch(() => setCities([]));

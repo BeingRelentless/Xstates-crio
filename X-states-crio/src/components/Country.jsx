@@ -4,7 +4,10 @@ function Country({ country, setCountry }) {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    fetch("https://location-selector.labs.crio.do/countries",{ cache: "no-store" })
+    fetch("https://location-selector.labs.crio.do/countries", {
+  cache: "no-store",
+})
+
       .then(res => res.json())
       .then(data => setCountries(data))
       .catch(() => setCountries([])); // ✅ silent fail
