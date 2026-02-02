@@ -36,7 +36,6 @@ function App() {
         />
 
         <City
-          key={`${country}-${state}`} 
           country={country}
           state={state}
           city={city}

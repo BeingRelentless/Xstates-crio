@@ -9,7 +9,7 @@ function State({ country, state, setState }) {
       return;
     }
 
-    fetch(`https://location-selector.labs.crio.do/country=${country}/states`)
+    fetch(`https://location-selector.labs.crio.do/country=${country}/states`,{ cache: "no-store" })
       .then(res => res.json())
       .then(data => setStates(data))
       .catch(() => setStates([])); // ✅ silent fail
