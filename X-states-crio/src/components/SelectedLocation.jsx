@@ -1,7 +1,9 @@
 function SelectedLocation({ city, state, country }) {
+  const text = `You selected ${city}, ${state}, ${country}`;
+
   return (
     <span className="shownstate">
-      You selected {city}, {state}, {country}
+      {text}
     </span>
   );
 }

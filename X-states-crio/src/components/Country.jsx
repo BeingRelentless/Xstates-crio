@@ -10,7 +10,7 @@ function Country({ country, setCountry }) {
 
       .then(res => res.json())
       .then(data => setCountries(data))
-      .catch(() => setCountries([])); // ✅ silent fail
+      .catch(() => setCountries([])); 
   }, []);
 
   return (
@@ -19,7 +19,7 @@ function Country({ country, setCountry }) {
       value={country}
       onChange={(e) => setCountry(e.target.value)}
     >
-      <option value="">Select Country</option>
+      <option key="placeholder" value="">Select Country</option>
       {countries.map((c) => (
         <option key={c} value={c}>{c}</option>
       ))}
