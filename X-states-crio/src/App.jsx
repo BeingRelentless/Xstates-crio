@@ -9,42 +9,44 @@ export default function App() {
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
 
-  // Fetch countries on mount
+  // Countries
   useEffect(() => {
-    fetch("https://location-selector.labs.crio.do/countries")
+    fetch("https://location-selector.labs.crio.do/countries", {
+      cache: "no-store",
+    })
       .then((res) => res.json())
       .then((data) => setCountries(data))
       .catch(() => setCountries([]));
   }, []);
 
-  // Fetch states when country changes
+  // States
   useEffect(() => {
-    if (!country) {
-      setStates([]);
-      setState("");
-      setCities([]);
-      setCity("");
-      return;
-    }
+    setStates([]);
+    setState("");
+    setCities([]);
+    setCity("");
+
+    if (!country) return;
 
     fetch(
-      `https://location-selector.labs.crio.do/country=${country}/states`
+      `https://location-selector.labs.crio.do/country=${country}/states`,
+      { cache: "no-store" }
     )
       .then((res) => res.json())
       .then((data) => setStates(data))
       .catch(() => setStates([]));
   }, [country]);
 
-  // Fetch cities when state changes
+  // Cities
   useEffect(() => {
-    if (!country || !state) {
-      setCities([]);
-      setCity("");
-      return;
-    }
+    setCities([]);
+    setCity("");
+
+    if (!country || !state) return;
 
     fetch(
-      `https://location-selector.labs.crio.do/country=${country}/state=${state}/cities`
+      `https://location-selector.labs.crio.do/country=${country}/state=${state}/cities`,
+      { cache: "no-store" }
     )
       .then((res) => res.json())
       .then((data) => setCities(data))
@@ -53,11 +55,9 @@ export default function App() {
 
   return (
     <div>
-      {/* Country Dropdown */}
-      <select
-        value={country}
-        onChange={(e) => setCountry(e.target.value)}
-      >
+      <h1>Select Location</h1>
+
+      <select value={country} onChange={(e) => setCountry(e.target.value)}>
         <option value="">Select Country</option>
         {countries.map((c) => (
           <option key={c} value={c}>
@@ -66,7 +66,6 @@ export default function App() {
         ))}
       </select>
 
-      {/* State Dropdown */}
       <select
         value={state}
         onChange={(e) => setState(e.target.value)}
@@ -80,7 +79,6 @@ export default function App() {
         ))}
       </select>
 
-      {/* City Dropdown */}
       <select
         value={city}
         onChange={(e) => setCity(e.target.value)}
@@ -94,10 +92,9 @@ export default function App() {
         ))}
       </select>
 
-      {/* Result */}
       {country && state && city && (
         <span className="shownstate">
-          You selected {city}, {state}, {country}
+          {`You selected ${city}, ${state}, ${country}`}
         </span>
       )}
     </div>
