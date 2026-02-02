@@ -94,8 +94,9 @@ export default function App() {
 
       {country && state && city && (
         <span className="shownstate">
-          {`You selected ${city}, ${state}, ${country}`}
+          {`You Selected ${city}, ${state}, ${country}`}
         </span>
+
       )}
     </div>
   );
