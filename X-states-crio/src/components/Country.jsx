@@ -1,33 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 function Country({ country, setCountry }) {
-    const [countries, setCountries] = useState([])
-    async function fetchCountries() {
-        try {
-            const res = await fetch("https://location-selector.labs.crio.do/countries")
-            const data = await res.json()
-            setCountries(data)
-        } catch (e) {
-            console.error(e)
-        }
+  const [countries, setCountries] = useState([]);
 
+  useEffect(() => {
+    fetch("https://location-selector.labs.crio.do/countries")
+      .then(res => res.json())
+      .then(data => setCountries(data));
+  }, []);
 
-    }
-
-    useEffect(() => {
-        fetchCountries();
-    }, [])
-
-    return (
-        <div className='country-select'>
-            <select name="country" id="country" value={country} onChange={(e) => setCountry(e.target.value)}>
-                <option value="">Select a country</option>
-                {countries.map((c, idx) => (
-                    <option key={c} value={c}>{c}</option>
-                ))}
-            </select>
-        </div>
-    )
+  return (
+    <select
+      data-testid="country-select"
+      value={country}
+      onChange={(e) => setCountry(e.target.value)}
+    >
+      <option value="">Select Country</option>
+      {countries.map((c) => (
+        <option key={c} value={c}>{c}</option>
+      ))}
+    </select>
+  );
 }
 
-export default Country
+export default Country;

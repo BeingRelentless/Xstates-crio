@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.select-container {
+  display: flex;
+  gap: 20px;
+}
+
+select {
+  padding: 10px;
+  min-width: 200px;
+}
+
+.selected-location {
+  font-size: 18px;
+}
