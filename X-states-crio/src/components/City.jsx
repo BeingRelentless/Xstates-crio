@@ -25,7 +25,7 @@ fetch(
       onChange={(e) => setCity(e.target.value)}
       disabled={!country || !state}
     >
-      <option key="placeholder" value="">Select City</option>
+      <option value="">Select City</option>
       {cities.map((c) => (
         <option key={c} value={c}>{c}</option>
       ))}

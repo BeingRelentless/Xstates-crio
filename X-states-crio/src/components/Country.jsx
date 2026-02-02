@@ -19,7 +19,7 @@ function Country({ country, setCountry }) {
       value={country}
       onChange={(e) => setCountry(e.target.value)}
     >
-      <option key="placeholder" value="">Select Country</option>
+      <option value="">Select Country</option>
       {countries.map((c) => (
         <option key={c} value={c}>{c}</option>
       ))}
