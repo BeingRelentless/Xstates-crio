@@ -29,7 +29,7 @@ function App() {
         <Country country={country} setCountry={setCountry} />
 
         <State
-          key={country}             
+          key={country}
           country={country}
           state={state}
           setState={setState}
@@ -43,12 +43,12 @@ function App() {
         />
       </div>
 
-      {country && state && city && (
-        <SelectedLocation
-          country={country}
-          state={state}
-          city={city}
-        />
+      {city && (
+        (
+          <span className="shownstate">
+            You selected {city}, {state}, {country}
+          </span>
+        )
       )}
     </div>
   );
