@@ -11,12 +11,13 @@ function City({ country, state, city, setCity }) {
 
     fetch(`https://location-selector.labs.crio.do/country=${country}/state=${state}/cities`)
       .then(res => res.json())
-      .then(data => setCities(data));
+      .then(data => setCities(data))
+      .catch(() => setCities([]));
   }, [country, state]);
 
   return (
     <select
-      data-testid="city-select"
+      id="city"
       value={city}
       onChange={(e) => setCity(e.target.value)}
       disabled={!country || !state}
